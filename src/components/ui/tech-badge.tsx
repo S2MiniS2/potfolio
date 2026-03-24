@@ -6,6 +6,11 @@ import { cn } from "@/lib/utils";
 const techBadgeClassMap: Record<string, string> = {
   React: "bg-cyan-100 text-cyan-700",
   "Next.js": "bg-gray-200 text-gray-800",
+  "React Native (Expo)": "bg-green-100 text-green-700",
+  Chatbase: "bg-blue-100 text-blue-700",
+  MongoDB: "bg-green-100 text-green-700",
+  Emotion: "bg-pink-100 text-pink-700",
+  Storybook: "bg-yellow-100 text-yellow-700",
   TypeScript: "bg-blue-100 text-blue-700",
   JavaScript: "bg-yellow-100 text-yellow-700",
   "Tailwind CSS": "bg-sky-100 text-sky-700",

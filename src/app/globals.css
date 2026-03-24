@@ -366,6 +366,92 @@ body {
   transform: rotate(-1deg);
 }
 
+.marker-pink-sweep {
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  padding-inline: 0.15rem;
+}
+
+.marker-pink-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 58% -0.28rem -10% -0.28rem;
+  z-index: -1;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgb(251 207 232 / 0.98),
+    rgb(244 114 182 / 0.62)
+  );
+  opacity: 1;
+  transform: scaleX(0) rotate(-1deg);
+}
+
+.marker-pink-sweep.from-left::before {
+  transform-origin: left center;
+}
+
+.marker-pink-sweep.from-right::before {
+  transform-origin: right center;
+}
+
+.marker-pink-sweep.is-visible::before {
+  transform: scaleX(1) rotate(-1deg);
+}
+
+@keyframes underline-from-left {
+  0% {
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left center;
+  }
+
+  45% {
+    transform: scaleX(1) rotate(-1deg);
+    transform-origin: left center;
+  }
+
+  75% {
+    transform: scaleX(1) rotate(-1deg);
+    transform-origin: left center;
+  }
+
+  100% {
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left center;
+  }
+}
+
+@keyframes underline-from-right {
+  0% {
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: right center;
+  }
+
+  45% {
+    transform: scaleX(1) rotate(-1deg);
+    transform-origin: right center;
+  }
+
+  75% {
+    transform: scaleX(1) rotate(-1deg);
+    transform-origin: right center;
+  }
+
+  100% {
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: right center;
+  }
+}
+
+.marker-pink-sweep.animate-left::before {
+  animation: underline-from-left 1.8s ease-in-out infinite;
+}
+
+.marker-pink-sweep.animate-right::before {
+  animation: underline-from-right 1.8s ease-in-out infinite;
+}
+
 .marker-blue {
   position: relative;
   z-index: 0;
@@ -441,4 +527,104 @@ body {
       rgb(125 211 252 / 0.22) 27px,
       rgb(125 211 252 / 0.22) 28px
     );
+}
+
+@keyframes crayon-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+
+@keyframes doodle-draw {
+  0%,
+  100% {
+    transform: scaleX(0.15) rotate(-2deg);
+    opacity: 0.4;
+  }
+
+  45%,
+  75% {
+    transform: scaleX(1) rotate(-2deg);
+    opacity: 1;
+  }
+}
+
+.about-checkerboard {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-checkerboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent 28px,
+      rgb(248 113 113 / 0.08) 28px,
+      rgb(248 113 113 / 0.08) 29px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 28px,
+      rgb(248 113 113 / 0.08) 28px,
+      rgb(248 113 113 / 0.08) 29px
+    );
+  pointer-events: none;
+}
+
+.crayon-star {
+  animation: crayon-float 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 3px 8px rgb(244 114 182 / 0.14));
+}
+
+.doodle-underline-pink {
+  position: relative;
+}
+
+.doodle-underline-pink::after {
+  content: "";
+  position: absolute;
+  left: -0.08rem;
+  right: -0.08rem;
+  bottom: -0.18rem;
+  height: 0.55rem;
+  border-bottom: 3px solid rgb(244 114 182 / 0.72);
+  border-radius: 9999px;
+  transform-origin: left center;
+  animation: doodle-draw 2.2s ease-in-out infinite;
+}
+
+.doodle-underline-blue {
+  position: relative;
+}
+
+.doodle-underline-blue::after {
+  content: "";
+  position: absolute;
+  left: -0.08rem;
+  right: -0.08rem;
+  bottom: -0.18rem;
+  height: 0.55rem;
+  border-bottom: 3px solid rgb(125 211 252 / 0.8);
+  border-radius: 9999px;
+  transform-origin: right center;
+  animation: doodle-draw 2.4s ease-in-out infinite;
+}
+
+.crayon-note {
+  position: relative;
+  border: 1px solid rgb(255 255 255 / 0.42);
+  border-radius: 1.5rem;
+  background: rgb(255 255 255 / 0.72);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 40px rgb(248 113 113 / 0.08);
 }

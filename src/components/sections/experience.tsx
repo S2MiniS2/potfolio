@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -165,7 +165,7 @@ function ExperienceDetailModal({
       "collaboration" in experience && experience.collaboration
         ? { id: "collaboration", label: "협업" }
         : null,
-      experience.highlights?.length ? { id: "highlights", label: "업무" } : null,
+      experience.highlights?.length ? { id: "highlights", label: "주요 업무" } : null,
       "details" in experience && experience.details?.length
         ? { id: "details", label: "상세 기여" }
         : null,
@@ -591,6 +591,15 @@ export default function Experience() {
   const [selectedToneIndex, setSelectedToneIndex] = useState(0);
   const sectionRef = useRef<HTMLElement | null>(null);
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
+  const [markerVisible, setMarkerVisible] = useState(false);
+  const [markerDirection, setMarkerDirection] = useState<"from-left" | "from-right">(
+    "from-left",
+  );
+  const [markerAnimationClass, setMarkerAnimationClass] = useState<
+    "animate-left" | "animate-right" | ""
+  >("");
+  const lastScrollYRef = useRef(0);
+  const wasInViewRef = useRef(false);
 
   const laneA = portfolio.experience.filter((_, index) => index % 2 === 0);
   const laneBSource = portfolio.experience.filter((_, index) => index % 2 === 1);
@@ -607,7 +616,24 @@ export default function Experience() {
       const visibleProgress = 1 - Math.min(Math.max(rect.top / viewportHeight, 0), 1);
       const fadeOutProgress = Math.min(Math.max(rect.bottom / viewportHeight, 0), 1);
       const nextOpacity = Math.max(0, Math.min(1, visibleProgress * fadeOutProgress));
+      const currentScrollY = window.scrollY;
+      const scrollDirection =
+        currentScrollY >= lastScrollYRef.current ? "from-left" : "from-right";
+      const isInView =
+        rect.top < viewportHeight * 0.72 && rect.bottom > viewportHeight * 0.2;
 
+      setMarkerDirection(scrollDirection);
+      lastScrollYRef.current = currentScrollY;
+      setMarkerVisible(isInView);
+      if (isInView && !wasInViewRef.current) {
+        setMarkerAnimationClass(
+          scrollDirection === "from-left" ? "animate-left" : "animate-right",
+        );
+      }
+      if (!isInView && wasInViewRef.current) {
+        setMarkerAnimationClass("");
+      }
+      wasInViewRef.current = isInView;
       setBackgroundOpacity(nextOpacity);
     };
 
@@ -641,12 +667,17 @@ export default function Experience() {
           <div className="space-y-3">
             <p className="text-sm font-medium text-muted-foreground">Experience</p>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              <span className="marker-pink">경험</span>
+              <span
+                className={cn(
+                  "marker-pink-sweep",
+                  markerDirection,
+                  markerAnimationClass,
+                  markerVisible && "is-visible",
+                )}
+              >
+                경험
+              </span>
             </h2>
-            <p className="max-w-2xl text-muted-foreground">
-              실제 서비스 코드베이스에서 기능을 개선하고 UI를 구현하며 쌓은
-              경험들입니다.
-            </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -690,3 +721,4 @@ export default function Experience() {
     </>
   );
 }
+

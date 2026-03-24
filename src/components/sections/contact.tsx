@@ -15,14 +15,14 @@ export default function Contact() {
           </h2>
 
           <p className="mx-auto max-w-xl text-muted-foreground">
-            프론트엔드 개발과 AI 기능을 서비스에 연결하는 작업에 관심이 있습니다.
+            프론트엔드 개발과 관련된
             프로젝트나 협업 관련 문의는 아래 링크를 통해 연락 주세요.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button asChild size="lg">
-            <Link href="mailto:your-email@gmail.com">
+            <Link href="mailto:sohe0409@gmail.com">
               <Mail className="mr-2 h-4 w-4" />
               Email
             </Link>
@@ -30,7 +30,7 @@ export default function Contact() {
 
           <Button asChild variant="outline" size="lg">
             <Link
-              href="https://github.com/your-github-id"
+              href="https://github.com/S2MniS2"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -41,7 +41,7 @@ export default function Contact() {
 
           <Button asChild variant="outline" size="lg">
             <Link
-              href="https://linkedin.com/in/your-linkedin"
+              href="https://www.linkedin.com/in/%EB%AF%BC%ED%9D%AC-%EB%B0%95-586a3639a/"
               target="_blank"
               rel="noopener noreferrer"
             >
