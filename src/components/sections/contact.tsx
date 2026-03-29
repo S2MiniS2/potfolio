@@ -11,12 +11,13 @@ export default function Contact() {
           <p className="text-sm font-medium text-muted-foreground">Contact</p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            함께 일할 기회를 찾고 있습니다
+            함께 만들 다음 작업을 기다리고 있습니다
           </h2>
 
           <p className="mx-auto max-w-xl text-muted-foreground">
-            프론트엔드 개발과 관련된
-            프로젝트나 협업 관련 문의는 아래 링크를 통해 연락 주세요.
+            프론트엔드 개발, 협업이 필요한 프로젝트, AI를 활용한 제품 경험
+            개선까지 편하게 이야기 나눠주세요. 아래 링크로 연락 주시면 빠르게
+            답장드리겠습니다.
           </p>
         </div>
 
@@ -30,7 +31,7 @@ export default function Contact() {
 
           <Button asChild variant="outline" size="lg">
             <Link
-              href="https://github.com/S2MniS2"
+              href="https://github.com/S2MiniS2"
               target="_blank"
               rel="noopener noreferrer"
             >

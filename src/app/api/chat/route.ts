@@ -2,12 +2,16 @@ import { NextResponse } from "next/server";
 
 import { detectIntent } from "@/lib/agent-router";
 import {
+  getAnswerByMessage,
+  getExperienceAnswer,
   getExperienceSummary,
+  getFallbackAnswer,
   getIntroSummary,
-  getUniqueTechs,
-  recommendProjects,
+  getProjectOverview,
+  getRecommendationAnswer,
+  getSelfIntroSummary,
+  getSkillSummary,
 } from "@/lib/chat-tools";
-import { portfolio } from "@/data/portfolio";
 
 export async function POST(req: Request) {
   try {
@@ -15,8 +19,8 @@ export async function POST(req: Request) {
 
     if (!message || typeof message !== "string") {
       return NextResponse.json(
-        { reply: "질문이 비어 있습니다." },
-        { status: 400 }
+        { type: "text", reply: "질문이 비어 있습니다. 기술 스택, 프로젝트, 프로필, 연락 방법처럼 편하게 물어봐 주세요." },
+        { status: 400 },
       );
     }
 
@@ -25,27 +29,32 @@ export async function POST(req: Request) {
     if (intent === "skills") {
       return NextResponse.json({
         type: "text",
-        reply: `주요 기술 스택은 ${getUniqueTechs().join(", ")} 입니다.`,
+        reply: getSkillSummary(),
       });
     }
 
     if (intent === "projects") {
       return NextResponse.json({
         type: "text",
-        reply: `대표 프로젝트로는 ${portfolio.projects
-          .map((project) => project.name)
-          .join(", ")}가 있습니다.`,
+        reply: getProjectOverview(),
       });
     }
 
     if (intent === "experience") {
       return NextResponse.json({
         type: "text",
-        reply: getExperienceSummary(),
+        reply: getExperienceAnswer(message) || getExperienceSummary(),
       });
     }
 
-    if (intent === "intro" || intent === "summary") {
+    if (intent === "summary") {
+      return NextResponse.json({
+        type: "text",
+        reply: getSelfIntroSummary(),
+      });
+    }
+
+    if (intent === "intro") {
       return NextResponse.json({
         type: "text",
         reply: getIntroSummary(),
@@ -53,26 +62,31 @@ export async function POST(req: Request) {
     }
 
     if (intent === "recommend") {
-      const projects = recommendProjects(message);
+      const result = getRecommendationAnswer(message);
 
       return NextResponse.json({
         type: "projects",
-        reply: "질문과 가장 관련 있는 프로젝트입니다.",
-        projects,
+        reply: result.reply,
+        projects: result.projects,
       });
     }
 
+    const fallback = getAnswerByMessage(message);
+
     return NextResponse.json({
-      type: "text",
-      reply:
-        "포트폴리오 기반으로 기술 스택, 프로젝트 추천, 인턴 경험, 자기소개를 도와줄 수 있습니다.",
+      type: fallback.type,
+      reply: fallback.reply ?? getFallbackAnswer(),
     });
   } catch (error) {
     console.error(error);
 
     return NextResponse.json(
-      { type: "text", reply: "응답 처리 중 오류가 발생했습니다." },
-      { status: 500 }
+      {
+        type: "text",
+        reply:
+          "답변을 준비하는 중 문제가 생겼습니다. 잠시 후 다시 질문해 주세요. 필요하면 프로필, 프로젝트, 연락 방법부터 다시 안내해드릴게요.",
+      },
+      { status: 500 },
     );
   }
 }
