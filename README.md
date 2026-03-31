@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧑‍💻 Portfolio
 
-## Getting Started
+프론트엔드 개발자 박민희의 포트폴리오입니다.  
+사용자 경험과 비즈니스 로직을 함께 고려하는 개발을 지향합니다.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 About
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+이 프로젝트는 개인 포트폴리오 사이트로,  
+프로젝트 경험과 기술 스택, 그리고 개발 방향성을 효과적으로 전달하기 위해 제작되었습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Tech Stack
 
-## Learn More
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Styled-components
+- Figma
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 반응형 UI (모바일 / 태블릿 / 데스크탑 대응)
+- 프로젝트 중심 구조 설계
+- 사용자 흐름을 고려한 UI/UX 구성
+- 컴포넌트 기반 설계
+- 유지보수를 고려한 코드 구조
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+app/  
+components/  
+styles/  
+public/  
+
+- app/ : 페이지 및 라우팅  
+- components/ : 재사용 가능한 UI 컴포넌트  
+- styles/ : 글로벌 스타일 및 테마  
+- public/ : 이미지 및 정적 파일  
+
+---
+
+## 🧠 What I Focused On
+
+- 단순 구현이 아닌 **비즈니스 로직에 맞는 구조 설계**
+- 컴포넌트 단위 분리 및 재사용성
+- 유지보수 가능한 코드 작성
+- 사용자 입장에서의 UX 흐름 설계
+
+---
+
+## 📎 Deployment
+
+👉 https://parkminhee-potfolio.vercel.app/#about
+
+---
+
+## 🛠️ Installation
+
+git clone https://github.com/S2MiniS2/potfolio.git  
+cd potfolio  
+npm install  
+npm run dev  
+
+---
+
+## 📬 Contact
+
+- GitHub: https://github.com/S2MiniS2  
+- Email: sohe0409@gmail.com
